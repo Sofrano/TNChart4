@@ -1,0 +1,6 @@
+framework module Pods_TNChart4_Example {
+  umbrella header "Pods-TNChart4_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

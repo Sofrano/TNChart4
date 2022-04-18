@@ -1,0 +1,64 @@
+PODS:
+  - Charts (4.0.0):
+    - Charts/Core (= 4.0.0)
+  - Charts/Core (4.0.0)
+  - Hero (1.6.1)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.1)
+  - SnapKit (5.6.0)
+  - Swinject (2.6.0)
+  - TNChart4 (0.1.0):
+    - Charts
+    - Hero
+    - RxCocoa
+    - RxSwift
+    - SnapKit
+    - Swinject
+
+DEPENDENCIES:
+  - Charts (from `https://github.com/Sofrano/Charts`, branch `Tradernet`)
+  - Hero
+  - RxCocoa (= 5.1.1)
+  - RxSwift (= 5.1.1)
+  - SnapKit
+  - Swinject (= 2.6)
+  - TNChart4 (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Hero
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - Swinject
+
+EXTERNAL SOURCES:
+  Charts:
+    :branch: Tradernet
+    :git: https://github.com/Sofrano/Charts
+  TNChart4:
+    :path: "../"
+
+CHECKOUT OPTIONS:
+  Charts:
+    :commit: d8970965034e87e80b148af2b6838ae04474da86
+    :git: https://github.com/Sofrano/Charts
+
+SPEC CHECKSUMS:
+  Charts: 22f3a1f5993f0769aa5ad380ccb242a1500d6b95
+  Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  Swinject: 48a96cda93633cf2860697b4ce76ab5db9ebaca2
+  TNChart4: 864eda5a976de844ed10229dc88efb032deb6beb
+
+PODFILE CHECKSUM: b28afe5aac0f420311dd6d33f775b066f53491b1
+
+COCOAPODS: 1.11.2

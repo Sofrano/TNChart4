@@ -1,0 +1,6 @@
+framework module TNChart4 {
+  umbrella header "TNChart4-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,13 +1,14 @@
 use_frameworks!
 
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'TNChart4_Example' do
+  pod 'Charts', :git => 'https://github.com/Sofrano/Charts', :branch => 'Tradernet'
   pod 'TNChart4', :path => '../'
-
-  target 'TNChart4_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  pod 'RxCocoa', '5.1.1'
+  pod 'RxSwift', '5.1.1'
+  pod 'SnapKit'
+  pod 'Swinject', '2.6'
+  pod 'Hero'
+  
 end

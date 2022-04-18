@@ -1,0 +1,42 @@
+{
+  "name": "TNChart4",
+  "version": "0.1.0",
+  "summary": "A short description of TNChart4.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Dmitriy Safarov/TNChart4",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Dmitriy Safarov": "kazdevelop@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Dmitriy Safarov/TNChart4.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "TNChart4/Classes/**/*",
+  "dependencies": {
+    "Charts": [
+
+    ],
+    "SnapKit": [
+
+    ],
+    "Swinject": [
+
+    ],
+    "RxSwift": [
+
+    ],
+    "RxCocoa": [
+
+    ],
+    "Hero": [
+
+    ]
+  }
+}
