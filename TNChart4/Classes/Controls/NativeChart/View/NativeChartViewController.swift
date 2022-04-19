@@ -197,7 +197,7 @@ class NativeChartViewController: UIViewController {
         chartView.rightAxis.axisLineColor = appearance.yAxisLineColor
         
         chartView.backgroundColor = appearance.chartViewBackgroundColor
-        chartView.dragDecelerationEnabled = true
+        chartView.dragDecelerationEnabled = false
         chartView.dragEnabled = true
         chartView.setScaleEnabled(true)
         chartView.maxVisibleCount = 12
@@ -229,11 +229,19 @@ extension NativeChartViewController: NativeChartViewInput {
     func setupInitialState() {}
 
     func updateLoadingState(isLoading: Bool) {
-        isLoading ? chartActivityIndicatorView.startAnimating()
-                  : chartActivityIndicatorView.stopAnimating()
-        chartActivityIndicatorView.isHidden = !isLoading
-        view.bringSubviewToFront(chartActivityIndicatorView)
-        //print("ISLOADING: \(isLoading ? "TRUE" : "FALSE")")
+        if isLoading {
+            view.bringSubviewToFront(chartActivityIndicatorView)
+            if !chartActivityIndicatorView.isAnimating {
+                chartActivityIndicatorView.startAnimating()
+            }
+        } else {
+            if chartActivityIndicatorView.isAnimating {
+                chartActivityIndicatorView.stopAnimating()
+            }
+        }
+        if chartActivityIndicatorView.isHidden != !isLoading {
+            chartActivityIndicatorView.isHidden = !isLoading
+        }
     }
     
     func updateLegend(_ value: NSAttributedString) {
@@ -258,7 +266,6 @@ extension NativeChartViewController: NativeChartViewInput {
     }
     
     func configurePosition() {
-        chartView.autoScaleMinMaxEnabled = true
         chartView.stopDeceleration()
         var range = chartPeriod.range
         if let entryCount = chartView.data?.entryCount {

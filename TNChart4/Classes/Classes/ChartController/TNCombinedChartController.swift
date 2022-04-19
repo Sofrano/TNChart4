@@ -216,11 +216,16 @@ extension TNCombinedChartController: TNChartControllerable {
                 isUsefulData: inout Bool,
                 actualEntryTime: inout TimeInterval?) {
         // Filter duplicates, for insurance
-        usedTime.removeAll()
+
         let setRecievedEntries = Set(entries)
         let setCachedEntries = Set(usedTime)
 
         let filteredEntries = setRecievedEntries.subtracting(setCachedEntries)
+        
+        isUsefulData = !filteredEntries.isEmpty
+        guard !filteredEntries.isEmpty else {
+            return
+        }
         
         // We sort by time so that the position is correct
         let sortedEntries = filteredEntries.sorted { (data1, data2) -> Bool in
@@ -235,6 +240,8 @@ extension TNCombinedChartController: TNChartControllerable {
         // when new data is received
         usedTime.append(contentsOf: sortedEntries)
         
+
+        
         // Append and create candle entries
         appendCandle(entries: sortedEntries)
         
@@ -247,7 +254,7 @@ extension TNCombinedChartController: TNChartControllerable {
         // Update chart
         notifyDataChanged()
         
-        isUsefulData = !filteredEntries.isEmpty
+
         actualEntryTime = self.actualEntryTime
         
     }

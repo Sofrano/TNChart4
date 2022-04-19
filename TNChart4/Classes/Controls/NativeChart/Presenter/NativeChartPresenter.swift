@@ -112,6 +112,7 @@ class NativeChartPresenter {
         if timeInterval <= 0 {
             timeInterval =  60.0
         }
+        resetTimer()
         actualDataTimer = Timer.scheduledTimer(timeInterval: timeInterval,
                                                target: self,
                                                selector: #selector(fetchUpdatedEntries),

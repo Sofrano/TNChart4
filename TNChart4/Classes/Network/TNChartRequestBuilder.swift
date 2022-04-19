@@ -40,7 +40,7 @@ public class TNChartRequestBuilder {
     /// and the logic should be based on this next time
     public func done() {
         lastTimeInterval = request.type.calculateDateFrom(at: lastTimeInterval, intervalMode: request.intervalMode) - 1
-        request.intervalMode = .openRay
+        request.intervalMode = .closedRay
         request.count = -1
     }
 }
