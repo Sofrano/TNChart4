@@ -204,7 +204,7 @@ class NativeChartViewController: UIViewController {
         chartView.pinchZoomEnabled = false
         chartView.legend.enabled = false
         chartView.setDragOffsetX(250)
-        chartView.autoScaleMinMaxEnabled = false
+        chartView.autoScaleMinMaxEnabled = true
         chartView.doubleTapToZoomEnabled = false
         view.backgroundColor = appearance.chartViewBackgroundColor
         
