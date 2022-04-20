@@ -45,8 +45,11 @@ class TNBarChartRenderer: BarChartRenderer {
         
         // We go through all bars and adjust their height depending
         // on the trading volume and coefficient
-        for index in Int(lowestVisibleX)...Int(highestVisibleX) {
-            guard let entry = dataSet.entryForXValue(Double(index), closestToY: 0) as? TNBarChartDataEntry else {
+        let lowestVisibleIndex = dataSet.entryIndex(x: lowestVisibleX, closestToY: Double.nan, rounding: .closest)
+        let highestVisibleIndex = dataSet.entryIndex(x: highestVisibleX, closestToY: Double.nan, rounding: .closest)
+        
+        for index in lowestVisibleIndex...highestVisibleIndex {
+            guard let entry = dataSet.entryForIndex(index) as? TNBarChartDataEntry else {
                 continue
             }
             entry.y = entry.volume * coeff + minValue

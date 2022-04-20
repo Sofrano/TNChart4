@@ -1,0 +1,86 @@
+disabled_rules:
+- cyclomatic_complexity
+- file_length
+- function_body_length
+- identifier_name
+- nesting
+- redundant_string_enum_value
+- type_body_length
+- unused_setter_value
+- trailing_whitespace
+- implicit_getter
+
+opt_in_rules:
+- array_init
+- closure_spacing
+- colon
+- comma
+- control_statement
+- empty_count
+- empty_enum_arguments
+- empty_string
+- fatal_error_message
+- file_name
+- force_cast
+- force_try
+- force_unwrapping
+- legacy_cggeometry_functions
+- legacy_constant
+- legacy_constructor
+- legacy_nsgeometry_functions
+- operator_usage_whitespace
+- redundant_void_return
+- return_arrow_whitespace
+- type_name
+- trailing_newline
+- unused_closure_parameter
+- unused_optional_binding
+- vertical_whitespace
+- void_return
+#- closure_end_indentation
+- explicit_self
+- explicit_init
+#- implicit_return
+- joined_default_parameter
+- literal_expression_end_indentation
+- modifier_order
+- nimble_operator
+- redundant_nil_coalescing
+- sorted_imports
+#- unneeded_parentheses_in_closure_argument
+- untyped_error_in_catch
+- unused_import
+#- vertical_whitespace_between_cases
+
+excluded:
+- Carthage
+- Pods
+- SwiftLint/Common/3rdPartyLib
+- R.generated.swift
+- DevPods
+
+line_length:
+    warning: 200
+    error: 10000
+    ignores_function_declarations: true
+    ignores_comments: true
+    ignores_urls: true
+    ignores_interpolated_strings: true
+    
+#function_body_length:
+#warning: 300
+#error: 500
+#function_parameter_count:
+#warning: 6
+#error: 8
+#type_body_length:
+#warning: 300
+#error: 500
+#file_length:
+#warning: 1000
+#error: 1500
+ignore_comment_only_lines: true
+#cyclomatic_complexity:
+#warning: 15
+#error: 25
+reporter: "xcode"
