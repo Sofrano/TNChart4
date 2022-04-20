@@ -12,13 +12,17 @@ class TNBarChartDataSet: BarChartDataSet {
     
     /// We calculate the maximum value of the sales volume for a given range of the x-axis
     func minMaxY(fromX: Double, toX: Double) -> Double? {
-        var max: Double = -Double.greatestFiniteMagnitude
+        var maximum: Double = -Double.greatestFiniteMagnitude
         if fromX > toX { return nil }
-        for index in Int(fromX)...Int(toX) {
-            guard let entry = entryForXValue(Double(index), closestToY: 0) as? TNBarChartDataEntry else { continue }
-            if max < entry.volume { max = entry.volume }
+        let fromIndex = entryIndex(x: fromX, closestToY: Double.nan, rounding: .closest)
+        let toIndex = entryIndex(x: toX, closestToY: Double.nan, rounding: .closest)
+        
+        for index in fromIndex...toIndex {
+            if let entry = entries[index] as? TNBarChartDataEntry {
+                if maximum < entry.volume { maximum = entry.volume }
+            }
         }
-        return max
+        return maximum
     }
     
 }

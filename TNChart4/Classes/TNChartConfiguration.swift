@@ -27,5 +27,9 @@ public class TNChartConfiguration {
     public static func configure(systemLang: String) {
         self.systemLang = systemLang
     }
+    
+    public static func configure(chartAppearance: TNChartAppearancable) {
+        self.chartAppearance = chartAppearance
+    }
 
 }

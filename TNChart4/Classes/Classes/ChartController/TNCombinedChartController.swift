@@ -38,7 +38,7 @@ class TNCombinedChartController {
     private var axisValueFormatter: AxisValueFormatter
     
     /// Used to protect against data duplication
-    private var usedTime: [TNChartData] = []
+    private var usedTime: Set<Double> = []
     
     /// Last actual entry time
     private var actualEntryTime: TimeInterval?
@@ -215,33 +215,28 @@ extension TNCombinedChartController: TNChartControllerable {
     func append(entries: [TNChartData],
                 isUsefulData: inout Bool,
                 actualEntryTime: inout TimeInterval?) {
+        
         // Filter duplicates, for insurance
-
-        let setRecievedEntries = Set(entries)
-        let setCachedEntries = Set(usedTime)
-
-        let filteredEntries = setRecievedEntries.subtracting(setCachedEntries)
+        let filteredEntries = Set(entries).filter({ !usedTime.contains($0.time) })
         
         isUsefulData = !filteredEntries.isEmpty
         guard !filteredEntries.isEmpty else {
             return
         }
         
+        // Add the time of the received data to protect against duplicates
+        // when new data is received
+        usedTime.formUnion(filteredEntries.compactMap({ $0.time }))
+        
         // We sort by time so that the position is correct
         let sortedEntries = filteredEntries.sorted { (data1, data2) -> Bool in
-            return data1.time < data2.time
+            return data1.time > data2.time
         }
         
         if (sortedEntries.first?.time ?? 0) > (self.actualEntryTime ?? 0) {
             self.actualEntryTime = sortedEntries.first?.time
         }
-        
-        // Add the time of the received data to protect against duplicates
-        // when new data is received
-        usedTime.append(contentsOf: sortedEntries)
-        
 
-        
         // Append and create candle entries
         appendCandle(entries: sortedEntries)
         
@@ -254,9 +249,7 @@ extension TNCombinedChartController: TNChartControllerable {
         // Update chart
         notifyDataChanged()
         
-
         actualEntryTime = self.actualEntryTime
-        
     }
     
     func setupChartView(_ chartView: ChartViewBase) {
