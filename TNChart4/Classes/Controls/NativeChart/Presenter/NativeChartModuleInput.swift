@@ -8,4 +8,5 @@
 
 public protocol NativeChartModuleInput: AnyObject {
     func configure(withTicker: String?, isDemo: Bool)
+    func forceReload()
 }
