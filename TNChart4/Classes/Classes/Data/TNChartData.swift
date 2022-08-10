@@ -42,4 +42,7 @@ public struct TNChartData: Hashable {
         return lhs.time == rhs.time
     }
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(time)
+    }
 }

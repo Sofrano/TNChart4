@@ -79,6 +79,10 @@ class NativeChartViewController: UIViewController {
     
     // MARK: - Public Functions
     
+    public func hideLegend() {
+        legendLabel.isHidden = true
+    }
+    
     public func update() {
         output?.update()
     }
