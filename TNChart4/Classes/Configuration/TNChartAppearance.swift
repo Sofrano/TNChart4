@@ -12,6 +12,7 @@ public protocol TNChartAppearancable {
     var module: TNChartModuleAppearancable { get }
     var panel: TNChartFullscreenPanelAppearancable { get }
     var control: TNChartMinimizedPanelAppearancable { get }
+    var newControl: TNMinimizedExtendedPanelAppearancable { get }
     var sheet: TNChartSheetAppearancable { get }
 }
 
@@ -85,6 +86,7 @@ public protocol TNChartFullscreenPanelAppearancable {
 public protocol TNChartMinimizedPanelAppearancable {
     var chartTypeBackgroundColor: UIColor { get }
     var chartTypeBorderColor: UIColor { get }
+    var chartTypeIconTintColor: UIColor { get }
     
     var periodButtonActiveTitleColor: UIColor { get }
     var periodButtonActiveBackgroundColor: UIColor { get }

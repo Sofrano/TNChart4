@@ -61,6 +61,7 @@ class NativeChartViewController: UIViewController {
         setupChartView()
         output?.viewIsReady()
         setupConstraints()
+        TNChartConfiguration.chartConfigurator?.configureChart(chartView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -211,7 +212,6 @@ class NativeChartViewController: UIViewController {
         chartView.autoScaleMinMaxEnabled = true
         chartView.doubleTapToZoomEnabled = false
         view.backgroundColor = appearance.chartViewBackgroundColor
-        
     }
     
 }

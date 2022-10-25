@@ -9,7 +9,22 @@
 import Foundation
 
 /// Chart visible time interval
-public enum TNChartPeriod: Int, CaseIterable {
+public enum TNChartPeriod: Int, CaseIterable, EnumSegmentedControlItemable {
+   
+    public var width: CGFloat {
+        40.0
+    }
+    
+    public var height: CGFloat {
+        32.0
+    }
+    
+    public var localized: String {
+        title
+    }
+    
+    case minute1 = -2
+    case minute5 = -1
     case day = 0
     case month = 1
     case halfyear = 2
@@ -17,6 +32,10 @@ public enum TNChartPeriod: Int, CaseIterable {
     
     public var count: Int {
         switch self {
+        case .minute1:
+            return -200
+        case .minute5:
+            return -100
         case .day, .month:
             return -10
         case .halfyear, .year:
@@ -26,6 +45,10 @@ public enum TNChartPeriod: Int, CaseIterable {
     
     public var timeframe: Int {
         switch self {
+        case .minute1:
+            return 1
+        case .minute5:
+            return 5
         case .day:
             return 15
         case .month:
@@ -37,6 +60,10 @@ public enum TNChartPeriod: Int, CaseIterable {
     
     public var interval: String {
         switch self {
+        case .minute1:
+            return "I1"
+        case .minute5:
+            return "I5"
         case .day:
             return "I15"
         case .month:
@@ -48,6 +75,10 @@ public enum TNChartPeriod: Int, CaseIterable {
     
     public var candleWidth: TimeInterval {
         switch self {
+        case .minute1:
+            return 60
+        case .minute5:
+            return 300
         case .day:
             return 900.0
         case .month:
@@ -59,7 +90,7 @@ public enum TNChartPeriod: Int, CaseIterable {
     
     public var range: Double {
         switch self {
-        case .day:
+        case .day, .minute1, .minute5:
             return 24 * 4
         case .month:
             return 24 * 30
@@ -72,6 +103,10 @@ public enum TNChartPeriod: Int, CaseIterable {
     
     public var title: String {
         switch self {
+        case .minute1:
+            return "1m"
+        case .minute5:
+            return "5m"
         case .day:
             return TNChartConfiguration.localized.chartPeriodDay
         case .month:
@@ -103,7 +138,7 @@ public enum TNChartPeriod: Int, CaseIterable {
     /// - returns: Calculated Date
     private func closedRayCalculationDateFrom(at dateTo: TimeInterval) -> TimeInterval {
         switch self {
-        case .day:
+        case .day, .minute1, .minute5:
             let date = Date(timeIntervalSince1970: dateTo).adding(months: -1)?.endOfMonth().startOfDay()
             return date?.timeIntervalSince1970 ?? 0
         case .month:
@@ -121,6 +156,12 @@ public enum TNChartPeriod: Int, CaseIterable {
     /// - returns: Calculated Date
     private func openRayCalculationDateFrom(at dateTo: TimeInterval) -> TimeInterval {
         switch self {
+        case .minute1:
+            let date = Date(timeIntervalSince1970: dateTo).adding(months: -1)?.endOfMonth().startOfDay()
+            return date?.timeIntervalSince1970 ?? 0
+        case .minute5:
+            let date = Date(timeIntervalSince1970: dateTo).adding(months: -1)?.endOfMonth().startOfDay()
+            return date?.timeIntervalSince1970 ?? 0
         case .day:
             let date = Date(timeIntervalSince1970: dateTo).adding(months: -2)?.endOfMonth().startOfDay()
             return date?.timeIntervalSince1970 ?? 0

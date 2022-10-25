@@ -42,6 +42,7 @@ class GenericTableSheet<T: Equatable>: SheetController, UITableViewDataSource, U
     // MARK: - Constructors
     
     init(with options: [T],
+         title: String? = nil,
          value: T? = nil,
          footerText: String? = nil,
          valueFor: @escaping(T) -> String) {
