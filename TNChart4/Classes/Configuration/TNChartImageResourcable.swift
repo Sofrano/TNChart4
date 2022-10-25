@@ -13,5 +13,5 @@ public protocol TNChartImageResourcable {
     var chartTypeCandleIcon: UIImage { get }
     var chartTypeLineIcon: UIImage { get }
     var bulletAttachmentImage: UIImage { get }
-    var chartPanelClose: UIImage { get } 
+    var chartPanelClose: UIImage { get }
 }

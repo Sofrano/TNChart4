@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 /// Type of chart graph
-public enum TNChartType {
+public enum TNChartType: String, CaseIterable {
     case candles
     case line
     case bars

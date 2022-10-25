@@ -13,5 +13,5 @@ public protocol TNChartLocalized {
     var chartPeriodDay: String { get }
     var chartPeriodMonth: String { get }
     var chartPeriodHalfYear: String { get }
-    var chartPeriodYear: String { get }
+    var chartPeriodYear: String { get }  
 }

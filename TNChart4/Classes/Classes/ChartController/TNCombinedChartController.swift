@@ -84,6 +84,7 @@ class TNCombinedChartController {
         let renderer = TNCombinedChartRenderer(chart: chartView,
                                                animator: chartView.chartAnimator,
                                                viewPortHandler: chartView.viewPortHandler)
+        TNChartConfiguration.chartConfigurator?.configureRenderer(renderer)
         return renderer
     }
     
@@ -260,7 +261,6 @@ extension TNCombinedChartController: TNChartControllerable {
         chartView.marker = createMarker()
         chartView.data = combinedChartData
         chartView.xAxis.valueFormatter = axisValueFormatter
-        
     }
     
     func clear() {

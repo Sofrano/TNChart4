@@ -14,9 +14,11 @@ import Charts
 /// Support Chart Types:
 /// - TNBarChartRenderer
 /// - TNCandleCandleStickChartRenderer
-class TNCombinedChartRenderer: CombinedChartRenderer {
+public class TNCombinedChartRenderer: CombinedChartRenderer {
     
     var combinedRenderers = [DataRenderer]()
+    var shouldDrawPopupValue: Bool = false
+    var shouldRoundCandleCorners: Bool = false
     
     override init(chart: CombinedChartView, animator: Animator, viewPortHandler: ViewPortHandler) {
         super.init(chart: chart, animator: animator, viewPortHandler: viewPortHandler)
@@ -24,12 +26,20 @@ class TNCombinedChartRenderer: CombinedChartRenderer {
     }
     
     // We create our own renders that process information for the graph
-    override func createRenderers() {
+    public override func createRenderers() {
         guard let chart = chart else { return }
         combinedRenderers = [DataRenderer]()
         combinedRenderers.append(TNBarChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler))
-        combinedRenderers.append(TNCandleStickChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler))
-        combinedRenderers.append(TNLineChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler))
+        let candleStickRenderer = TNCandleStickChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler)
+        candleStickRenderer.shouldRoundCorners = shouldRoundCandleCorners
+        candleStickRenderer.shouldDrawPopupValue = shouldDrawPopupValue
+        candleStickRenderer.yAxisValueFormatter = chart.rightAxis.valueFormatter
+        combinedRenderers.append(candleStickRenderer)
+        
+        let lineChartRenderer = TNLineChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler)
+        combinedRenderers.append(lineChartRenderer)
+        lineChartRenderer.shouldDrawPopupValue = shouldDrawPopupValue
+        lineChartRenderer.yAxisValueFormatter = chart.rightAxis.valueFormatter
         subRenderers = combinedRenderers
     }
     
@@ -37,7 +47,7 @@ class TNCombinedChartRenderer: CombinedChartRenderer {
     ///
     /// - Parameters:
     ///   - indices: the highlighted values
-    override func drawHighlighted(context: CGContext, indices: [Highlight]) {
+    public override func drawHighlighted(context: CGContext, indices: [Highlight]) {
         for renderer in combinedRenderers {
             var data: ChartData?
             switch renderer {
@@ -58,7 +68,7 @@ class TNCombinedChartRenderer: CombinedChartRenderer {
     }
     
     /// Draw data
-    override func drawData(context: CGContext) {
+    public override func drawData(context: CGContext) {
         // Didn't find the reason, but I have to inject custom renders
         subRenderers = combinedRenderers
         super.drawData(context: context)
