@@ -79,6 +79,17 @@ public class TNChart {
         chartViewController.reload()
     }
     
+    /// Reload chart
+    ///
+    /// Reconfiguration interactor, clean data and load new data
+    public func forceReload() {
+        (chartViewController.output as? NativeChartModuleInput)?.forceReload()
+    }
+    
+    public func hideLegend() {
+        chartViewController.hideLegend()
+    }
+    
     /// Clear all chart data
     public func clear() {
         chartViewController.reset()

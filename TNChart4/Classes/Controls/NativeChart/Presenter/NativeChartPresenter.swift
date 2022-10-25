@@ -204,6 +204,17 @@ extension NativeChartPresenter: NativeChartModuleInput {
         self.isDemo = isDemo
     }
     
+    func forceReload() {
+        view?.updateChartState(.empty)
+        chartController.clear()
+        chartController.notifyDataChanged()
+        setupCandleChart()
+        interactor?.configure(ticker: tickerName ?? "",
+                              chartType: currentChartPeriod,
+                              isDemo: isDemo)
+        nextPage()
+    }
+    
 }
 
 // MARK: - ViewOutput
@@ -220,7 +231,10 @@ extension NativeChartPresenter: NativeChartViewOutput {
     
     func changeChartPeriodType(_ period: TNChartPeriod) {
         guard currentChartPeriod != period,
-              let tickerName = tickerName else { return }
+              let tickerName = tickerName else {
+            currentChartPeriod = period
+            return
+        }
         currentChartPeriod = period
         axisTransformer = TNAxisPositionTransformer()
         setupCandleChart()
