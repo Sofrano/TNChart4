@@ -31,7 +31,6 @@ public class TNCombinedChartRenderer: CombinedChartRenderer {
         combinedRenderers = [DataRenderer]()
         combinedRenderers.append(TNBarChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler))
         let candleStickRenderer = TNCandleStickChartRenderer(dataProvider: chart, animator: animator, viewPortHandler: viewPortHandler)
-        candleStickRenderer.shouldRoundCorners = shouldRoundCandleCorners
         candleStickRenderer.shouldDrawPopupValue = shouldDrawPopupValue
         candleStickRenderer.yAxisValueFormatter = chart.rightAxis.valueFormatter
         combinedRenderers.append(candleStickRenderer)
