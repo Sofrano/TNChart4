@@ -33,14 +33,10 @@ public class TNMinimizedExtendedPanel: UIView {
         }
     }
     
-    private weak var targetViewController: UIViewController!
-    
     // MARK: - Constructors
     
-    public required init(targetViewController: UIViewController,
-                         period: TNChartPeriod = .day,
+    public required init(period: TNChartPeriod = .day,
                          chartType: TNChartType = .bars) {
-        self.targetViewController = targetViewController
         self.currentPeriod = period
         self.currentChartType = chartType
         super.init(frame: .zero)
